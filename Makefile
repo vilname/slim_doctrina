@@ -17,3 +17,8 @@ docker-pull:
 
 docker-build:
 	docker-compose build
+
+api-init: api-composer-install
+
+api-composer-install:
+	docker-compose run --rm api-php-cli composer install
