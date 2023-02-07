@@ -28,6 +28,8 @@ services:
         build:
             context: api/docker/development/php-fpm
         env_file: .env
+        environment:
+            PHP_IDE_CONFIG: serverName=API
         volumes:
             - ./api:/app
 
@@ -37,3 +39,17 @@ services:
         env_file: .env
         volumes:
             - ./api:/app
+
+    api-postgres:
+        image: postgres:12.2-alpine
+        environment:
+            POSTGRES_USER: app
+            POSTGRES_PASSWORD: secret
+            POSTGRES_DB: app
+        volumes:
+            - api-postgres:/var/lib/postgresql/data
+        ports:
+            - "54321:5432"
+
+volumes:
+    api-postgres:

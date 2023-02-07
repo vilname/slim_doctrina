@@ -8,9 +8,13 @@
   },
   "require": {
     "php": "^8.0",
+    "doctrine/migrations": "^3.5",
+    "doctrine/orm": "^2.14",
+    "laminas/laminas-config-aggregator": "^1.13",
     "php-di/php-di": "^7.0",
     "slim/psr7": "^1.6",
     "slim/slim": "4.*",
+    "symfony/cache": "^6.0",
     "symfony/console": "^6.0"
   },
   "require-dev": {

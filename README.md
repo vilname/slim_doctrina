@@ -1,1 +1,5 @@
-# Slim + ReactJS Demo Auction
+# Подписка, используется
+
+1. Доктрина Orm
+2. Докер
+3. Slim
