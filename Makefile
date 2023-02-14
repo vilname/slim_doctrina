@@ -18,7 +18,16 @@ docker-pull:
 docker-build:
 	docker-compose build
 
-api-init: api-composer-install
+api-init: api-composer-install api-wait-db api-migrations
 
 api-composer-install:
 	docker-compose run --rm api-php-cli composer install
+
+api-wait-db:
+	docker-compose run --rm api-php-cli wait-for-it api-postgres:5432 -t 30
+
+api-migrations:
+	docker-compose run --rm api-php-cli composer app migrations:migrate
+
+frontend-yarn-install:
+	docker-compose run --rm frontend-node-cli yarn install

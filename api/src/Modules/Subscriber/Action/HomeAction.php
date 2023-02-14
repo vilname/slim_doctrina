@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Action;
+namespace App\Modules\Subscriber\Action;
 
-use App\Http\JsonResponse;
+use App\Modules\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;

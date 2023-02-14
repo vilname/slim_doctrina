@@ -58,7 +58,10 @@ return [
                 'dbname' => getenv('DB_NAME'),
                 'charset' => 'utf-8',
             ],
-            'metadata_dirs' => [],
+            'subscribers' => [],
+            'metadata_dirs' => [
+                __DIR__ . '/../../src/Modules/Subscriber/Entity',
+            ],
         ],
     ],
 ];
