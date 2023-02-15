@@ -1,4 +1,7 @@
-init: docker-down-clear docker-pull docker-build docker-up
+init: docker-down-clear \
+	api-clear frontend-clear \
+	docker-pull docker-build docker-up \
+	api-init frontend-init
 up: docker-up
 down: docker-down
 restart: down up
@@ -18,7 +21,10 @@ docker-pull:
 docker-build:
 	docker-compose build
 
-api-init: api-composer-install api-wait-db api-migrations
+api-init: api-permissions api-composer-install api-wait-db api-migrations
+
+api-clear:
+	docker run --rm -v ${PWD}/api:/app -w /app alpine sh -c 'rm -rf var/cache/* var/log/* var/test/*'
 
 api-composer-install:
 	docker-compose run --rm api-php-cli composer install
@@ -28,6 +34,11 @@ api-wait-db:
 
 api-migrations:
 	docker-compose run --rm api-php-cli composer app migrations:migrate
+
+frontend-clear:
+	docker run --rm -v ${PWD}/frontend:/app -w /app alpine sh -c 'rm -rf build'
+
+frontend-init: frontend-yarn-install
 
 frontend-yarn-install:
 	docker-compose run --rm frontend-node-cli yarn install
