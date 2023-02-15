@@ -11,6 +11,7 @@
     "doctrine/migrations": "^3.5",
     "doctrine/orm": "^2.14",
     "laminas/laminas-config-aggregator": "^1.13",
+    "monolog/monolog": "^2.9",
     "php-di/php-di": "^7.0",
     "slim/psr7": "^1.6",
     "slim/slim": "4.*",
