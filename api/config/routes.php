@@ -6,5 +6,5 @@ use App\Http;
 use Slim\App;
 
 return static function(App $app) {
-    $app->get('/', \App\Modules\Subscriber\Action\HomeAction::class);
+    $app->get('/', Http\Action\HomeAction::class);
 };

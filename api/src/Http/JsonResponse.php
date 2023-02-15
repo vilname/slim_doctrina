@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Modules;
+namespace App\Http;
 
 use Slim\Psr7\Factory\StreamFactory;
 use Slim\Psr7\Headers;
