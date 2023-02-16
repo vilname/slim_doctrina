@@ -19,6 +19,8 @@ services:
     frontend-node:
         build:
             context: frontend/docker/development/node
+        environment:
+            WDS_SOCKET_PORT: 0
         volumes:
             - ./frontend:/app
         command: yarn start
