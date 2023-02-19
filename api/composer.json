@@ -13,11 +13,15 @@
     "laminas/laminas-config-aggregator": "^1.13",
     "monolog/monolog": "^2.9",
     "php-di/php-di": "^7.0",
+    "ramsey/uuid": "^4.7",
     "slim/psr7": "^1.6",
     "slim/slim": "4.*",
+    "swiftmailer/swiftmailer": "^6.0",
     "symfony/cache": "^6.0",
     "symfony/console": "^6.0",
-    "symfony/validator": "^6.0"
+    "symfony/validator": "^6.0",
+    "twig/twig": "^3.0",
+    "webmozart/assert": "^1.11"
   },
   "require-dev": {
     "doctrine/data-fixtures": "^1.6",

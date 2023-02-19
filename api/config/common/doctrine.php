@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
+use App\Modules\Auth;
 use Doctrine\Common\EventManager;
 use Doctrine\Common\EventSubscriber;
+use Doctrine\DBAL\Types\Type;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\UnderscoreNamingStrategy;
@@ -25,6 +27,12 @@ return [
         );
 
         $config->setNamingStrategy(new UnderscoreNamingStrategy());
+
+        foreach ($settings['types'] as $name => $class) {
+            if (!Type::hasType($name)) {
+                Type::addType($name, $class);
+            }
+        }
 
         $eventManager = new EventManager();
 
@@ -60,7 +68,14 @@ return [
             ],
             'subscribers' => [],
             'metadata_dirs' => [
+                __DIR__ . '/../../src/Modules/Auth/Entity',
                 __DIR__ . '/../../src/Modules/Subscriber/Entity',
+            ],
+            'types' => [
+                Auth\Entity\User\IdType::NAME => Auth\Entity\User\IdType::class,
+                Auth\Entity\User\EmailType::NAME => Auth\Entity\User\EmailType::class,
+                Auth\Entity\User\RoleType::NAME => Auth\Entity\User\RoleType::class,
+                Auth\Entity\User\StatusType::NAME => Auth\Entity\User\StatusType::class,
             ],
         ],
     ],
