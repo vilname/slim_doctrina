@@ -2,18 +2,16 @@ import React from 'react'
 import System from '../../Layout/System'
 import { Link } from 'react-router-dom'
 
-function Home() {
+function NotFound() {
   return (
     <System>
-      <h1>Auction</h1>
-      <p>We are here</p>
+      <h1>Error</h1>
+      <p>Page is not found</p>
       <p>
-        <Link to="/join" data-testid="join-link">
-          Join to Us
-        </Link>
+        <Link to="/">Back to Home</Link>
       </p>
     </System>
   )
 }
 
-export default Home
+export default NotFound

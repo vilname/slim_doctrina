@@ -1,19 +1,18 @@
 import React from 'react'
 import System from '../../Layout/System'
 import { Link } from 'react-router-dom'
+import JoinForm from './JoinForm'
 
-function Home() {
+function Join() {
   return (
     <System>
-      <h1>Auction</h1>
-      <p>We are here</p>
+      <h1>Join to Us</h1>
+      <JoinForm />
       <p>
-        <Link to="/join" data-testid="join-link">
-          Join to Us
-        </Link>
+        <Link to="/">Back to Home</Link>
       </p>
     </System>
   )
 }
 
-export default Home
+export default Join
