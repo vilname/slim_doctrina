@@ -1,5 +1,5 @@
 import React from 'react'
-import System from '../../Layout/System'
+import System from '../../../Layout/System'
 import { Link } from 'react-router-dom'
 
 function Success() {

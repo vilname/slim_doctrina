@@ -1,5 +1,7 @@
-FROM nginx:1.17-alpine
+FROM nginx:1.19-alpine
 
-COPY ./conf.d /etc/nginx/conf.d/
+RUN apk add --no-cache curl
+
+COPY ./development/nginx/conf.d /etc/nginx/conf.d
 
 WORKDIR /app
