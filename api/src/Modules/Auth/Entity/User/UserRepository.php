@@ -13,22 +13,21 @@ class UserRepository
     /**
      * @var EntityRepository
      */
-    private EntityRepository $repo;
+    private EntityRepository $repository;
     private EntityManagerInterface $em;
 
     /**
      * @param EntityManagerInterface $em
-     * @param EntityRepository $repo
      */
-    public function __construct(EntityManagerInterface $em, EntityRepository $repo)
+    public function __construct(EntityManagerInterface $em)
     {
         $this->em = $em;
-        $this->repo = $repo;
+        $this->repository = $em->getRepository(User::class);
     }
 
     public function hasByEmail(Email $email): bool
     {
-        return $this->repo->createQueryBuilder('t')
+        return $this->repository->createQueryBuilder('t')
                 ->select('COUNT(t.id)')
                 ->andWhere('t.email = :email')
                 ->setParameter(':email', $email->getValue())
@@ -41,7 +40,7 @@ class UserRepository
      */
     public function findByJoinConfirmToken(string $token): ?User
     {
-        return $this->repo->findOneBy(['joinConfirmToken.value' => $token]);
+        return $this->repository->findOneBy(['joinConfirmToken.value' => $token]);
     }
 
     /**
@@ -50,7 +49,7 @@ class UserRepository
      */
     public function findByPasswordResetToken(string $token): ?User
     {
-        return $this->repo->findOneBy(['passwordResetToken.value' => $token]);
+        return $this->repository->findOneBy(['passwordResetToken.value' => $token]);
     }
 
     /**
@@ -59,13 +58,13 @@ class UserRepository
      */
     public function findByNewEmailToken(string $token): ?User
     {
-        return $this->repo->findOneBy(['newEmailToken.value' => $token]);
+        return $this->repository->findOneBy(['newEmailToken.value' => $token]);
     }
 
     public function get(Id $id): User
     {
         /** @var User|null $user */
-        $user = $this->repo->find($id->getValue());
+        $user = $this->repository->find($id->getValue());
         if ($user === null) {
             throw new DomainException('User is not found.');
         }
@@ -75,7 +74,7 @@ class UserRepository
     public function getByEmail(Email $email): User
     {
         /** @var User|null $user */
-        $user = $this->repo->findOneBy(['email' => $email->getValue()]);
+        $user = $this->repository->findOneBy(['email' => $email->getValue()]);
         if ($user === null) {
             throw new DomainException('User is not found.');
         }

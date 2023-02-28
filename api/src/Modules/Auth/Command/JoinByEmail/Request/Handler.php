@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Auth\Command\JoinByEmail\Request;
+namespace App\Modules\Auth\Command\JoinByEmail\Request;
 
-use App\Auth\Entity\User\Email;
-use App\Auth\Entity\User\Id;
-use App\Auth\Entity\User\User;
-use App\Auth\Entity\User\UserRepository;
-use App\Auth\Service\JoinConfirmationSender;
-use App\Auth\Service\PasswordHasher;
-use App\Auth\Service\Tokenizer;
-use App\Flusher;
+use App\Modules\Auth\Entity\User\Email;
+use App\Modules\Auth\Entity\User\Id;
+use App\Modules\Auth\Entity\User\User;
+use App\Modules\Auth\Entity\User\UserRepository;
+use App\Modules\Auth\Service\JoinConfirmationSender;
+use App\Modules\Auth\Service\PasswordHasher;
+use App\Modules\Auth\Service\Tokenizer;
+use App\Modules\Flusher;
 use DateTimeImmutable;
 use DomainException;
 

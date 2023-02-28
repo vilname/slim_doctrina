@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Auth\Command\JoinByEmail\Request;
+namespace App\Modules\Auth\Command\JoinByEmail\Request;
 
 use Symfony\Component\Validator\Constraints as Assert;
 

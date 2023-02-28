@@ -9,6 +9,8 @@ function request(url, method, data, headers) {
     },
   }
 
+  console.log('common', common)
+
   const body =
     data !== null
       ? {
