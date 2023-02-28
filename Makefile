@@ -41,6 +41,9 @@ api-migrations:
 frontend-clear:
 	docker run --rm -v ${PWD}/frontend:/app -w /app alpine sh -c 'rm -rf build'
 
+api-cs-fix:
+	docker-compose run --rm api-php-cli composer php-cs-fixer fix
+
 frontend-init: frontend-yarn-install
 
 frontend-yarn-install:

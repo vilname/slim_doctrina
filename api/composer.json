@@ -26,7 +26,14 @@
   },
   "require-dev": {
     "doctrine/data-fixtures": "^1.6",
+    "friendsofphp/php-cs-fixer": "^3.14",
     "roave/security-advisories": "dev-master"
+  },
+  "replace": {
+    "symfony/polyfill-php54": "*",
+    "symfony/polyfill-php56": "*",
+    "symfony/polyfill-php70": "*",
+    "symfony/polyfill-mbstring": "*"
   },
   "autoload": {
     "psr-4": {
@@ -34,6 +41,7 @@
     }
   },
   "scripts": {
-    "app": "php bin/app.php --ansi"
+    "app": "php bin/app.php --ansi",
+    "php-cs-fixer": "php-cs-fixer --config=.php_cs --allow-risky=yes"
   }
 }
