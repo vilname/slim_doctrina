@@ -71,6 +71,7 @@ return [
             'metadata_dirs' => [
                 __DIR__ . '/../../src/Modules/Auth/Entity',
                 __DIR__ . '/../../src/Modules/Subscriber/Entity',
+                __DIR__ . '/../../src/Modules/OAuth/Entity',
             ],
             'types' => [
                 Auth\Entity\User\IdType::NAME => Auth\Entity\User\IdType::class,

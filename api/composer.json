@@ -12,6 +12,7 @@
     "doctrine/orm": "^2.14",
     "finesse/swiftmailer-defaults-plugin": "^2.0",
     "laminas/laminas-config-aggregator": "^1.13",
+    "league/oauth2-server": "^8.4",
     "monolog/monolog": "^2.9",
     "php-di/php-di": "^7.0",
     "ramsey/uuid": "^4.7",

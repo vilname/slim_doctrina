@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Modules\Auth\Entity\User;
 
-use App\Modules\Auth\Entity\User\Token;
 use App\Modules\Auth\Service\PasswordHasher;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
