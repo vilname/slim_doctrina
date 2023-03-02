@@ -12,12 +12,12 @@ class SubscriberFixture extends AbstractFixture
 {
     public function load(ObjectManager $manager)
     {
-        for ($i=0; $i<=5; $i++) {
-            $subscriber = Subscriber::create('user' . $i . '@mail.ru');
-
-            $manager->persist($subscriber);
-        }
-
-        $manager->flush();
+//        for ($i=0; $i<=5; $i++) {
+//            $subscriber = Subscriber::create('user' . $i . '@mail.ru');
+//
+//            $manager->persist($subscriber);
+//        }
+//
+//        $manager->flush();
     }
 }

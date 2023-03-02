@@ -49,17 +49,27 @@ services:
             dockerfile: development/php-fpm/Dockerfile
         env_file: .env
         environment:
-            PHP_IDE_CONFIG: serverName=API
+            JWT_PUBLIC_KEY_PATH: /run/secrets/jwt_public_key
+            JWT_PRIVATE_KEY_PATH: /run/secrets/jwt_private_key
         volumes:
             - ./api:/app
+        secrets:
+            - jwt_public_key
+            - jwt_private_key
 
     api-php-cli:
         build:
             context: api/docker
             dockerfile: development/php-cli/Dockerfile
         env_file: .env
+        environment:
+            JWT_PUBLIC_KEY_PATH: /run/secrets/jwt_public_key
+            JWT_PRIVATE_KEY_PATH: /run/secrets/jwt_private_key
         volumes:
             - ./api:/app
+        secrets:
+            - jwt_public_key
+            - jwt_private_key
 
     api-postgres:
         image: postgres:12.2-alpine
@@ -74,6 +84,12 @@ services:
 
     mailer:
         image: mailhog/mailhog
+
+secrets:
+    jwt_public_key:
+        file: ./docker/development/secrets/jwt_public.key
+    jwt_private_key:
+        file: ./docker/development/secrets/jwt_private.key
 
 volumes:
     api-postgres:

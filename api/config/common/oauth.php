@@ -13,6 +13,10 @@ use App\Modules\OAuth\Entity\Scope;
 use App\Modules\OAuth\Entity\ScopeRepository;
 use App\Modules\OAuth\Entity\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use League\OAuth2\Server\AuthorizationServer;
+use League\OAuth2\Server\CryptKey;
+use League\OAuth2\Server\Grant\AuthCodeGrant;
+use League\OAuth2\Server\Grant\RefreshTokenGrant;
 use League\OAuth2\Server\Repositories\AccessTokenRepositoryInterface;
 use League\OAuth2\Server\Repositories\AuthCodeRepositoryInterface;
 use League\OAuth2\Server\Repositories\ClientRepositoryInterface;
@@ -22,6 +26,37 @@ use League\OAuth2\Server\Repositories\UserRepositoryInterface;
 use Psr\Container\ContainerInterface;
 
 return [
+    AuthorizationServer::class => static function (ContainerInterface $container): AuthorizationServer {
+        $config = $container->get('config')['oauth'];
+
+        $clientRepository = $container->get(ClientRepositoryInterface::class);
+        $scopeRepository = $container->get(ScopeRepositoryInterface::class);
+        $accessTokenRepository = $container->get(AccessTokenRepositoryInterface::class);
+        $authCodeRepository = $container->get(AuthCodeRepositoryInterface::class);
+        $refreshTokenRepository = $container->get(RefreshTokenRepositoryInterface::class);
+
+        $server = new AuthorizationServer(
+            $clientRepository,
+            $accessTokenRepository,
+            $scopeRepository,
+            new CryptKey($config['private_key_path'], null, false),
+            $config['encryption_key']
+        );
+
+        $grant = new AuthCodeGrant(
+            $authCodeRepository,
+            $refreshTokenRepository,
+            new DateInterval($config['auth_code_interval'])
+        );
+        $grant->setRefreshTokenTTL(new DateInterval($config['refresh_token_interval']));
+        $server->enableGrantType($grant, new DateInterval($config['access_token_interval']));
+
+        $grant = new RefreshTokenGrant($refreshTokenRepository);
+        $grant->setRefreshTokenTTL(new DateInterval($config['refresh_token_interval']));
+        $server->enableGrantType($grant, new DateInterval($config['access_token_interval']));
+
+        return $server;
+    },
     ScopeRepositoryInterface::class => static function (ContainerInterface $container): ScopeRepository {
         $config = $container->get('config')['oauth'];
 
@@ -67,6 +102,12 @@ return [
                     'redirect_uri' => getenv('FRONTEND_URL') . '/oauth',
                 ],
             ],
+            'encryption_key' => getenv('JWT_ENCRYPTION_KEY'),
+            'public_key_path' => getenv('JWT_PUBLIC_KEY_PATH'),
+            'private_key_path' => getenv('JWT_PRIVATE_KEY_PATH'),
+            'auth_code_interval' => 'PT1M',
+            'access_token_interval' => 'PT10M',
+            'refresh_token_interval' => 'P7D',
         ],
     ],
 ];

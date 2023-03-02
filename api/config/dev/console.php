@@ -31,6 +31,7 @@ return [
                 Migrations\Tools\Console\Command\GenerateCommand::class,
             ],
             'fixture_paths' => [
+                __DIR__ . '/../../src/Modules/Auth/Fixture',
                 __DIR__ . '/../../src/Modules/Subscriber/Fixture',
             ],
         ],

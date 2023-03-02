@@ -38,6 +38,9 @@ api-wait-db:
 api-migrations:
 	docker-compose run --rm api-php-cli composer app migrations:migrate -- --no-interaction
 
+api-fixtures:
+	docker-compose run --rm api-php-cli composer app fixtures:load
+
 frontend-clear:
 	docker run --rm -v ${PWD}/frontend:/app -w /app alpine sh -c 'rm -rf build'
 
