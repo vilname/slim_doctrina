@@ -5,8 +5,7 @@ services:
             context: gateway/docker
             dockerfile: development/nginx/Dockerfile
         ports:
-            - "8080:8080"
-            - "8081:8081"
+            - "80:80"
         depends_on:
             - frontend
             - api
