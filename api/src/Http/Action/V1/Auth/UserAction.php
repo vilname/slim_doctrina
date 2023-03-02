@@ -26,6 +26,7 @@ class UserAction implements RequestHandlerInterface
 
         return new JsonResponse([
             'id' => $identity->id,
+            'role' => $identity->role,
         ]);
     }
 }

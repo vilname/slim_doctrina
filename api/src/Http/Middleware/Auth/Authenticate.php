@@ -49,7 +49,10 @@ class Authenticate implements MiddlewareInterface
             return $exception->generateHttpResponse($this->response->createResponse());
         }
 
-        $identity = new Identity((string)$request->getAttribute('oauth_user_id'));
+        $identity = new Identity(
+            (string)$request->getAttribute('oauth_user_id'),
+            (string)$request->getAttribute('oauth_user_role')
+        );
 
         return $handler->handle($request->withAttribute(self::ATTRIBUTE, $identity));
     }

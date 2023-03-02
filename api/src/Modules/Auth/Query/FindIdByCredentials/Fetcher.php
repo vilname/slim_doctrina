@@ -8,6 +8,7 @@ namespace App\Modules\Auth\Query\FindIdByCredentials;
 use App\Modules\Auth\Entity\User\Status;
 use App\Modules\Auth\Service\PasswordHasher;
 use Doctrine\DBAL\Connection;
+use Doctrine\DBAL\Exception;
 use Doctrine\DBAL\Result;
 
 class Fetcher
@@ -21,9 +22,11 @@ class Fetcher
         $this->hasher = $hasher;
     }
 
+    /**
+     * @throws Exception
+     */
     public function fetch(Query $query): ?User
     {
-        /** @var Result $stmt */
         $stmt = $this->connection->createQueryBuilder()
             ->select([
                 'id',

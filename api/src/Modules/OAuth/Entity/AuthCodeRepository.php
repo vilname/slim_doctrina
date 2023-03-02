@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Modules\OAuth\Entity;
 
+use DateTimeImmutable;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
 use League\OAuth2\Server\Entities\AuthCodeEntityInterface;
@@ -53,6 +54,24 @@ class AuthCodeRepository implements AuthCodeRepositoryInterface
     public function isAuthCodeRevoked($codeId): bool
     {
         return !$this->exists($codeId);
+    }
+
+    public function removeAllForUser(string $userId): void
+    {
+        $this->em->createQueryBuilder()
+            ->delete(AuthCode::class, 'ac')
+            ->andWhere('ac.userIdentifier = :user_id')
+            ->setParameter(':user_id', $userId)
+            ->getQuery()->execute();
+    }
+
+    public function removeAllExpired(DateTimeImmutable $now): void
+    {
+        $this->em->createQueryBuilder()
+            ->delete(AuthCode::class, 'ac')
+            ->andWhere('ac.expiryDateTime < :date')
+            ->setParameter(':date', $now->format(DATE_ATOM))
+            ->getQuery()->execute();
     }
 
     private function exists(string $id): bool

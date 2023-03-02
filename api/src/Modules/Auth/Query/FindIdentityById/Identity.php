@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Middleware\Auth;
+namespace App\Modules\Auth\Query\FindIdentityById;
 
 class Identity
 {
