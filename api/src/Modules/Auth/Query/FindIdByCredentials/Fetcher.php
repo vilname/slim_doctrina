@@ -27,7 +27,7 @@ class Fetcher
      */
     public function fetch(Query $query): ?User
     {
-        $stmt = $this->connection->createQueryBuilder()
+        $result = $this->connection->createQueryBuilder()
             ->select([
                 'id',
                 'status',
@@ -35,10 +35,10 @@ class Fetcher
             ])
             ->from('auth_users')
             ->where('email = :email')
-            ->setParameter(':email', mb_strtolower($query->email))
+            ->setParameter('email', mb_strtolower($query->email))
             ->executeQuery();
 
-        $row = $stmt->fetchAssociative();
+        $row = $result->fetchAssociative();
 
         if ($row === false) {
             return null;

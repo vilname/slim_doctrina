@@ -21,12 +21,11 @@ class PasswordHasher
         Assert::notEmpty($password);
         /** @var string|false|null $hash */
         $hash = password_hash($password, PASSWORD_ARGON2I, ['memory_cost' => $this->memoryCost]);
-        if ($hash === null) {
-            throw new RuntimeException('Invalid hash algorithm.');
-        }
+
         if ($hash === false) {
             throw new RuntimeException('Unable to generate hash.');
         }
+
         return $hash;
     }
 

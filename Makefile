@@ -6,6 +6,8 @@ up: docker-up
 down: docker-down
 restart: down up
 
+update-deps: api-composer-update frontend-yarn-upgrade
+
 docker-up:
 	docker-compose up -d
 
@@ -47,7 +49,13 @@ frontend-clear:
 api-cs-fix:
 	docker-compose run --rm api-php-cli composer php-cs-fixer fix
 
+api-composer-update:
+	docker-compose run --rm api-php-cli composer update
+
 frontend-init: frontend-yarn-install
 
 frontend-yarn-install:
 	docker-compose run --rm frontend-node-cli yarn install
+
+frontend-yarn-upgrade:
+	docker-compose run --rm frontend-node-cli yarn upgrade

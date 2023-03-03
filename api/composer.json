@@ -7,10 +7,10 @@
     "sort-packages": true
   },
   "require": {
-    "php": "^8.0",
+    "php": "^8.1",
+    "ext-mbstring": "^8.1",
     "doctrine/migrations": "^3.5",
     "doctrine/orm": "^2.14",
-    "finesse/swiftmailer-defaults-plugin": "^2.0",
     "laminas/laminas-config-aggregator": "^1.13",
     "league/oauth2-server": "^8.4",
     "monolog/monolog": "^2.9",
@@ -18,9 +18,9 @@
     "ramsey/uuid": "^4.7",
     "slim/psr7": "^1.6",
     "slim/slim": "4.*",
-    "swiftmailer/swiftmailer": "^6.3",
     "symfony/cache": "^6.0",
     "symfony/console": "^6.0",
+    "symfony/mailer": "^6.0",
     "symfony/validator": "^6.0",
     "twig/twig": "^3.0",
     "webmozart/assert": "^1.11"
@@ -31,10 +31,14 @@
     "roave/security-advisories": "dev-master"
   },
   "replace": {
-    "symfony/polyfill-php54": "*",
-    "symfony/polyfill-php56": "*",
+    "symfony/polyfill-mbstring": "*",
     "symfony/polyfill-php70": "*",
-    "symfony/polyfill-mbstring": "*"
+    "symfony/polyfill-php71": "*",
+    "symfony/polyfill-php72": "*",
+    "symfony/polyfill-php73": "*",
+    "symfony/polyfill-php74": "*",
+    "symfony/polyfill-php80": "*",
+    "symfony/polyfill-php81": "*"
   },
   "autoload": {
     "psr-4": {
