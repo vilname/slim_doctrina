@@ -23,7 +23,7 @@ docker-pull:
 docker-build:
 	docker-compose build --pull
 
-api-init: api-permissions api-composer-install api-wait-db api-migrations
+api-init: api-composer-install api-migrations api-fixtures
 
 api-permissions:
 	docker run --rm -v ${PWD}/api:/app -w /app alpine chmod 777 var/cache var/log var/test

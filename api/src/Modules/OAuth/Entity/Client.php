@@ -16,7 +16,7 @@ class Client implements ClientEntityInterface
 
     public function __construct(string $identifier, string $name, string $redirectUri)
     {
-        Assert::notEmpty($identifier);
+//        Assert::notEmpty($identifier);
         Assert::notEmpty($name);
         Assert::notEmpty($redirectUri);
 

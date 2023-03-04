@@ -12,7 +12,6 @@ use League\OAuth2\Server\Entities\Traits\EntityTrait;
 use League\OAuth2\Server\Entities\Traits\TokenEntityTrait;
 
 #[ORM\Entity]
-#[ORM\HasLifecycleCallbacks]
 #[ORM\Table(name: 'oauth_auth_codes')]
 class AuthCode implements AuthCodeEntityInterface
 {
@@ -23,8 +22,8 @@ class AuthCode implements AuthCodeEntityInterface
     /**
      * @var string
      */
-    #[ORM\Id]
     #[ORM\Column(type: 'string', length: 80)]
+    #[ORM\Id]
     protected $identifier;
 
 

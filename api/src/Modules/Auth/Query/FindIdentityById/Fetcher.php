@@ -26,7 +26,7 @@ class Fetcher
             ->select(['id', 'role'])
             ->from('auth_users')
             ->where('id = :id')
-            ->setParameter(':id', $id)
+            ->setParameter('id', $id)
             ->executeQuery();
 
         $row = $result->fetchAssociative();

@@ -28,7 +28,8 @@
   "require-dev": {
     "doctrine/data-fixtures": "^1.6",
     "friendsofphp/php-cs-fixer": "^3.14",
-    "roave/security-advisories": "dev-master"
+    "roave/security-advisories": "dev-master",
+    "symfony/var-dumper": "^6.2"
   },
   "replace": {
     "symfony/polyfill-mbstring": "*",
